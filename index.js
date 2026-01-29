@@ -99,22 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
       "You deserve all the happiness and success in the world. Keep being awesome!"
     ],
     duration: 1.5, // Faster typing for better UX
-    pauseBetweenLines: 0.4
+    pauseBetweenLines: 0.2
   };
 
   function startTypingAnimation() {
-    const tl = gsap.timeline({
-      onComplete: () => {
-        // Show the manual surprise button after typing is done
-        gsap.to(revealSurpriseBtn, {
-          display: 'flex',
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'back.out(1.7)'
-        });
-      }
-    });
+    const tl = gsap.timeline();
 
     typingConfig.lines.forEach((line, index) => {
       const elementId = `line-${index + 1}`;
