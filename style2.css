@@ -1,0 +1,362 @@
+:root {
+  --primary: #ff4d6d;
+  --primary-light: #ff758f;
+  --primary-dark: #c9184a;
+  --glass: rgba(255, 255, 255, 0.15);
+  --glass-heavy: rgba(255, 255, 255, 0.85);
+  --font-title: 'Playfair Display', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #fff0f3 0%, #ffcad4 100%);
+}
+
+.celebration-container {
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Balloons */
+.balloons-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 2px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--glass-heavy);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(255, 77, 109, 0.25);
+}
+
+.photo-section {
+  flex: 1;
+  background: #000;
+  position: relative;
+  min-height: 500px;
+}
+
+.image-reveal {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  to {
+    left: 150%;
+  }
+}
+
+.message-section {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.celebrate-title {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  color: var(--primary-dark);
+  line-height: 1;
+  margin-bottom: 30px;
+}
+
+.celebrate-title span {
+  font-family: var(--font-script);
+  font-size: 4.5rem;
+  color: var(--primary);
+  display: block;
+  margin-top: 10px;
+}
+
+.message-content {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 40px;
+}
+
+.message-content p {
+  margin-bottom: 20px;
+}
+
+.action-section {
+  margin-bottom: 40px;
+}
+
+.add-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.add-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: var(--primary-dark);
+  box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4);
+}
+
+.add-btn .icon {
+  font-size: 1.4rem;
+  transition: transform 0.4s ease;
+}
+
+.add-btn:hover .icon {
+  transform: rotate(20deg) scale(1.2);
+}
+
+.footer-info {
+  margin-top: auto;
+}
+
+.credit {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.author {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.heart-pulse {
+  color: var(--primary);
+  display: inline-block;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.3);
+  }
+}
+
+.back-home {
+  display: inline-block;
+  color: var(--primary-dark);
+  text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--primary-light);
+  transition: all 0.3s ease;
+}
+
+.back-home:hover {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Floating Music Button */
+.music-controls {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 100;
+}
+
+.fab-music {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fab-music:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+.fab-music.playing {
+  animation: musicPulse 1.5s infinite;
+}
+
+@keyframes musicPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(255, 77, 109, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 109, 0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .glass-card {
+    flex-direction: column;
+    max-width: 500px;
+    margin: 20px 0;
+  }
+
+  .photo-section {
+    min-height: 350px;
+  }
+
+  .message-section {
+    padding: 40px 30px;
+  }
+
+  .celebrate-title {
+    font-size: 2.2rem;
+  }
+
+  .celebrate-title span {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebration-container {
+    padding: 10px;
+  }
+
+  .glass-card {
+    border-radius: 20px;
+  }
+
+  .photo-section {
+    min-height: 300px;
+  }
+
+  .message-section {
+    padding: 30px 20px;
+  }
+
+  .celebrate-title {
+    font-size: 1.8rem;
+  }
+
+  .celebrate-title span {
+    font-size: 2.8rem;
+  }
+
+  .message-content {
+    font-size: 1rem;
+  }
+
+  .fab-music {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+/* High Resolution Screens (4K, 8K) */
+@media (min-width: 2500px) {
+  html {
+    font-size: 24px;
+  }
+
+  .glass-card {
+    max-width: 1600px;
+  }
+
+  .photo-section {
+    min-height: 700px;
+  }
+}
+
+@media (min-width: 3800px) {
+  html {
+    font-size: 32px;
+  }
+
+  .glass-card {
+    max-width: 2200px;
+  }
+
+  .photo-section {
+    min-height: 900px;
+  }
+}
