@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const typingConfig = {
     lines: [
       "Priyanti, you've been an amazing friend through thick and thin — life wouldn't be the same without you!",
-      "On your special day, I want you to know how much your friendship means to me and how grateful I am to have you.",
       "You deserve all the happiness and success in the world. Keep being awesome!"
     ],
     duration: 1.5, // Faster typing for better UX
@@ -144,29 +143,29 @@ document.addEventListener('DOMContentLoaded', () => {
     card.classList.add('is-open');
     document.body.classList.add('card-is-open');
 
-    const tl = gsap.timeline(); // Remove delay for instant response
+    const tl = gsap.timeline();
 
-    // SCALE UP & OPEN: Smooth 1.4 second duration for a premium feel
-    tl.to(card, { scale: 1.1, duration: 1.4, ease: 'power3.inOut' }, 0);
-    tl.to(cardFront, { rotationY: -180, duration: 1.4, ease: 'power4.inOut' }, 0);
+    // SCALE UP & OPEN: Fast 0.6 second duration for instant response
+    tl.to(card, { scale: 1.1, duration: 0.6, ease: 'power3.inOut' }, 0);
+    tl.to(cardFront, { rotationY: -180, duration: 0.6, ease: 'power4.inOut' }, 0);
 
     // Reveal title
     tl.fromTo('.wish-title',
       { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-      "-=0.4"
+      { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' },
+      "-=0.2"
     );
 
     // Start typing animation
     tl.add(() => {
       startTypingAnimation();
-    }, "-=0.2");
+    }, "-=0.1");
 
     // Signature (reveals after title, but before typing finishes)
     tl.fromTo('.signed',
       { opacity: 0, y: 10, filter: 'blur(5px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power2.out' },
-      "-=0.2"
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.5, ease: 'power2.out' },
+      "-=0.1"
     ).add(() => {
       heartTrigger.classList.add('heart-pulse');
     });
@@ -176,9 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
     isCardOpen = false;
     card.classList.remove('is-open');
     document.body.classList.remove('card-is-open');
-    // Scale back down instantly but smoothly (1.4s)
-    gsap.to(card, { scale: 1, duration: 1.4, ease: 'power3.inOut' });
-    gsap.to(cardFront, { rotationY: 0, duration: 1.4, ease: 'power3.inOut' });
+    // Scale back down fast (0.6s)
+    gsap.to(card, { scale: 1, duration: 0.6, ease: 'power3.inOut' });
+    gsap.to(cardFront, { rotationY: 0, duration: 0.6, ease: 'power3.inOut' });
   };
 
   openBtn.addEventListener('click', openCard);
@@ -216,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(surpriseSection);
 
-  // 6. MICRO-INTERACTIONS
+  // 6. ENHANCED MICRO-INTERACTIONS
   heartTrigger.addEventListener('click', () => {
     gsap.to(heartTrigger, {
       scale: 1.8,
@@ -227,14 +226,264 @@ document.addEventListener('DOMContentLoaded', () => {
       onComplete: () => {
         const msg = document.createElement('div');
         msg.innerText = "You're an amazing friend! ✨";
-        msg.style.cssText = `position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; background: #ff4d6d; padding: 15px 30px; border-radius: 50px; z-index: 3000; font-weight: 600; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);`;
+        msg.style.cssText = `position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; background: linear-gradient(135deg, #ff4d6d, #ff758f); padding: 15px 30px; border-radius: 50px; z-index: 3000; font-weight: 600; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4); animation: messagePopup 0.5s ease-out;`;
         document.body.appendChild(msg);
-        gsap.from(msg, { scale: 0, opacity: 0, duration: 0.5, ease: 'back.out(1.7)' });
-        gsap.to(msg, { y: -40, opacity: 0, delay: 1.5, duration: 0.8, onComplete: () => msg.remove() });
+        
+        // Enhanced animation for the message
+        gsap.from(msg, { 
+          scale: 0, 
+          opacity: 0, 
+          duration: 0.5, 
+          ease: 'back.out(1.7)' 
+        });
+        gsap.to(msg, { 
+          y: -40, 
+          opacity: 0, 
+          delay: 2, 
+          duration: 0.8, 
+          onComplete: () => msg.remove() 
+        });
       }
     });
 
-    for (let i = 0; i < 10; i++) createSparkle(window.innerWidth / 2, window.innerHeight / 2);
+    // Create more sparkles for better effect
+    for (let i = 0; i < 15; i++) {
+      setTimeout(() => createSparkle(window.innerWidth / 2, window.innerHeight / 2), i * 50);
+    }
+  });
+
+  // Enhanced button interactions
+  document.querySelectorAll('.btn-interact').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      gsap.to(btn, {
+        scale: 1.05,
+        duration: 0.2,
+        ease: 'power2.out'
+      });
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, {
+        scale: 1,
+        duration: 0.2,
+        ease: 'power2.out'
+      });
+    });
+
+    btn.addEventListener('click', () => {
+      gsap.to(btn, {
+        scale: 0.95,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1
+      });
+    });
+  });
+
+  // Enhanced navigation button
+  const nextPageBtn = document.querySelector('.next-page-btn');
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener('mouseenter', () => {
+      gsap.to('.arrow-circle', {
+        x: 5,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+    
+    nextPageBtn.addEventListener('mouseleave', () => {
+      gsap.to('.arrow-circle', {
+        x: 0,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+  }
+
+  // Add ripple effect to buttons
+  document.querySelectorAll('button, .next-page-btn').forEach(element => {
+    element.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        left: ${x}px;
+        top: ${y}px;
+        pointer-events: none;
+        transform: scale(0);
+        animation: rippleEffect 0.6s ease-out;
+      `;
+      
+      this.style.position = 'relative';
+      this.style.overflow = 'hidden';
+      this.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
+  // Enhanced loading experience
+  window.addEventListener('load', () => {
+    const tl = gsap.timeline();
+    tl.to('.progress', { width: '100%', duration: 1.5, ease: 'power2.inOut' })
+      .to(loader, {
+        opacity: 0,
+        duration: 0.8,
+        onComplete: () => {
+          loader.style.display = 'none';
+          startEntranceAnimations();
+        }
+      });
+  });
+
+  function startEntranceAnimations() {
+    const tl = gsap.timeline();
+    
+    // Enhanced card entrance
+    tl.from('.main-container', {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power4.out'
+    })
+    .from('#card', {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'back.out(1.7)'
+    }, "-=0.5")
+    .from('.main-title', { 
+      y: 30, 
+      opacity: 0, 
+      duration: 1,
+      ease: 'power4.out' 
+    }, "-=0.8")
+    .from('.cake-container', { 
+      scale: 0, 
+      opacity: 0, 
+      duration: 0.8, 
+      ease: 'back.out(1.7)' 
+    }, "-=0.6")
+    .from('.card-controls', { 
+      y: 20, 
+      opacity: 0, 
+      duration: 0.6 
+    }, "-=0.4")
+    .from('.audio-player', { 
+      x: -20, 
+      opacity: 0, 
+      duration: 0.6 
+    }, "-=0.4");
+  }
+
+  // Enhanced particle system
+  function createParticles() {
+    const container = document.getElementById('particles-container');
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3 + 1;
+      p.style.cssText = `
+        position: absolute; 
+        width: ${size}px; 
+        height: ${size}px; 
+        background: white; 
+        opacity: ${Math.random() * 0.3 + 0.1}; 
+        border-radius: 50%; 
+        top: ${Math.random() * 100}%; 
+        left: ${Math.random() * 100}%; 
+        pointer-events: none;
+        animation: particleFloat ${8 + Math.random() * 4}s infinite linear;
+        animation-delay: ${Math.random() * 5}s;
+      `;
+      container.appendChild(p);
+    }
+  }
+
+  // Enhanced sparkle effect
+  function createSparkle(x, y) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    document.body.appendChild(s);
+    const size = Math.random() * 8 + 4;
+    gsap.set(s, { 
+      x, y, 
+      width: size, 
+      height: size, 
+      backgroundColor: colors[Math.floor(Math.random() * colors.length)], 
+      borderRadius: '50%', 
+      position: 'absolute', 
+      pointerEvents: 'none', 
+      zIndex: 9999 
+    });
+    
+    gsap.to(s, { 
+      x: x + (Math.random() * 200 - 100), 
+      y: y + (Math.random() * 200 - 100), 
+      opacity: 0, 
+      scale: 0, 
+      duration: 1.2, 
+      ease: 'power2.out', 
+      onComplete: () => s.remove() 
+    });
+  }
+
+  // Add CSS for new animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes particleFloat {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.4;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes messagePopup {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  createParticles();
+  
+  // Enhanced click effects
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A' && !e.target.closest('button')) {
+      createSparkle(e.pageX, e.pageY);
+    }
   });
 
   // 5. FINAL SCENE TRIGGER
