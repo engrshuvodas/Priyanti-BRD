@@ -28,9 +28,21 @@
     <main class="content-wrapper">
       <div class="glass-card">
         <div class="photo-section">
-          <div class="image-reveal">
-            <img src="./BRD-Girl/prionty1.jpeg" alt="Birthday Celebration" class="main-image">
-            <div class="image-shimmer"></div>
+          <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="position: relative; width: 100%; min-height: 400px; background: white; border-radius: 20px; overflow: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+              <img id="current-photo" src="./BRD-Girl/prionty1.jpeg" alt="Priyanti" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block;">
+              <div style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%);">
+                <button onclick="changePhoto(-1)" style="width: 40px; height: 40px; border-radius: 50%; background: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">‹</button>
+              </div>
+              <div style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%);">
+                <button onclick="changePhoto(1)" style="width: 40px; height: 40px; border-radius: 50%; background: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">›</button>
+              </div>
+              <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                <span onclick="showPhoto(0)" id="dot-0" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></span>
+                <span onclick="showPhoto(1)" id="dot-1" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></span>
+                <span onclick="showPhoto(2)" id="dot-2" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -49,8 +61,7 @@
           </div>
 
           <div class="footer-info">
-            <div class="credit">Made with <span class="heart-pulse">❤</span> by <span class="author">Engr Shuvo
-                Das</span></div>
+            <div class="credit">Made with <span class="heart-pulse">❤</span> by <span class="author">Engr Shuvo</span></div>
             <a href="index.html" class="back-home">Back to start</a>
           </div>
         </div>
@@ -69,6 +80,43 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Simple Photo Gallery Functionality
+      const photos = [
+        './BRD-Girl/prionty1.jpeg',
+        './BRD-Girl/prionty4.jpeg',
+        './BRD-Girl/prionty2.jpeg'
+      ];
+      let currentPhotoIndex = 0;
+
+      function showPhoto(index) {
+        currentPhotoIndex = index;
+        document.getElementById('current-photo').src = photos[index];
+        
+        // Update dots
+        for (let i = 0; i < 3; i++) {
+          const dot = document.getElementById(`dot-${i}`);
+          if (i === index) {
+            dot.style.background = 'white';
+          } else {
+            dot.style.background = 'rgba(255,255,255,0.5)';
+          }
+        }
+      }
+
+      function changePhoto(direction) {
+        const newIndex = (currentPhotoIndex + direction + 3) % 3;
+        showPhoto(newIndex);
+      }
+
+      // Make functions global for onclick handlers
+      window.showPhoto = showPhoto;
+      window.changePhoto = changePhoto;
+
+      // Auto-slide every 3 seconds
+      setInterval(() => {
+        changePhoto(1);
+      }, 3000);
+
       // Entrance Animations
       const tl = gsap.timeline();
 
@@ -78,12 +126,6 @@
         duration: 1.2,
         ease: 'power4.out'
       })
-        .from('.main-image', {
-          scale: 1.2,
-          opacity: 0,
-          duration: 1,
-          ease: 'power2.out'
-        }, "-=0.5")
         .from('.celebrate-title', {
           x: 50,
           opacity: 0,
