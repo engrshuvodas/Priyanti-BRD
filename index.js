@@ -95,9 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Typing Animation Configuration
   const typingConfig = {
     lines: [
-      "You've been with me through my best days and my hardest ones — and I can't imagine life without you.",
-      "On your special day, I just want you to feel how deeply loved and appreciated you truly are.",
-      "You deserve all the joy in the world, today and always."
+      "Priyanti, you've been an amazing friend through thick and thin — life wouldn't be the same without you!",
+      "On your special day, I want you to know how much your friendship means to me and how grateful I am to have you.",
+      "You deserve all the happiness and success in the world. Keep being awesome!"
     ],
     duration: 1.5, // Faster typing for better UX
     pauseBetweenLines: 0.4
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       repeat: 1,
       onComplete: () => {
         const msg = document.createElement('div');
-        msg.innerText = "You are my everything! ✨";
+        msg.innerText = "You're an amazing friend! ✨";
         msg.style.cssText = `position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; background: #ff4d6d; padding: 15px 30px; border-radius: 50px; z-index: 3000; font-weight: 600; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);`;
         document.body.appendChild(msg);
         gsap.from(msg, { scale: 0, opacity: 0, duration: 0.5, ease: 'back.out(1.7)' });
