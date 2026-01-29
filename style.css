@@ -1,14 +1,20 @@
 :root {
   --primary: #ff4d6d;
-  --primary-light: #ff85a1;
+  --primary-light: #ff758f;
   --primary-dark: #c9184a;
-  --secondary: #ffb3c1;
-  --accent: #fff0f3;
-  --text-main: #2b2d42;
-  --text-light: #595d75;
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --secondary: #ff85a1;
+  --accent: #ffb3c1;
+  --glass: rgba(255, 255, 255, 0.15);
+  --glass-heavy: rgba(255, 255, 255, 0.25);
+  --glass-light: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
+  --shadow-heavy: rgba(0, 0, 0, 0.3);
+  --text-main: #1a1a2e;
+  --text-light: #4a4a5e;
+  --text-bright: #ffffff;
+  --text-muted: #6c757d;
   --font-title: 'Playfair Display', serif;
   --font-body: 'Outfit', sans-serif;
   --font-script: 'Great Vibes', cursive;
@@ -22,7 +28,10 @@
 
 body {
   font-family: var(--font-body);
-  background: #fff5f7;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ff4d6d 100%);
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   color: var(--text-main);
   overflow-x: hidden;
   min-height: 100vh;
@@ -31,7 +40,13 @@ body {
   align-items: center;
 }
 
-/* Ambient Background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced Ambient Background */
 .ambient-bg {
   position: fixed;
   top: 0;
@@ -39,8 +54,32 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: radial-gradient(circle at 50% 50%, #fff0f3 0%, #ffcad4 100%);
+  background: 
+    linear-gradient(135deg, 
+      rgba(102, 126, 234, 0.05) 0%, 
+      rgba(118, 75, 162, 0.05) 25%, 
+      rgba(240, 147, 251, 0.05) 50%, 
+      rgba(245, 87, 108, 0.05) 75%, 
+      rgba(255, 77, 109, 0.05) 100%),
+    url('./BRD-Girl/prionty3.jpeg') center/cover no-repeat;
   overflow: hidden;
+  backdrop-filter: blur(3px);
+}
+
+.ambient-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.15) 0%, 
+    rgba(118, 75, 162, 0.15) 25%, 
+    rgba(240, 147, 251, 0.15) 50%, 
+    rgba(245, 87, 108, 0.15) 75%, 
+    rgba(255, 77, 109, 0.15) 100%);
+  z-index: 1;
 }
 
 .cursor-light {
@@ -188,7 +227,7 @@ body {
   z-index: 1;
 }
 
-/* Card Styling */
+/* Modern Glass Card Styling */
 #card-wrapper {
   perspective: 2000px;
   width: 100%;
@@ -227,17 +266,22 @@ body {
   height: 100%;
   left: 50%;
   top: 0;
-  background: #fff;
-  box-shadow: var(--shadow);
+  background: var(--glass-heavy);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 25px 50px -12px var(--shadow-medium),
+    0 0 0 1px var(--glass-border),
+    inset 0 0 0 1px var(--glass-light);
   border-radius: 0 15px 15px 0;
   overflow: hidden;
 }
 
 #card-inside {
   z-index: 1;
-  background: #fffafa;
+  background: var(--glass-heavy);
   border-radius: 0 15px 15px 0;
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid var(--glass-border);
 }
 
 #card-front {
@@ -254,8 +298,15 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    var(--glass-light) 0%, 
+    transparent 50%, 
+    var(--glass-light) 100%);
+  border-radius: 0 15px 15px 0;
+  z-index: -1;
+  animation: shimmer 3s ease-in-out infinite;
   background: linear-gradient(105deg,
       transparent 20%,
       rgba(255, 255, 255, 0.1) 40%,
@@ -288,10 +339,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--text-bright);
   padding: 40px;
   text-align: center;
   backface-visibility: hidden;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .main-title {
@@ -299,11 +351,13 @@ body {
   font-size: 3.5rem;
   line-height: 1.1;
   margin-bottom: 30px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .main-title .highlight {
   font-family: var(--font-script);
   font-size: 4rem;
+  color: var(--text-bright);
 }
 
 /* Card Inside Content */
@@ -318,8 +372,9 @@ justify-content: center;
 .wish-title {
 font-family: var(--font-title);
 font-size: 1.8rem;
-color: var(--primary);
+color: var(--primary-dark);
 margin-bottom: 15px;
+text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .wish-text {
@@ -337,14 +392,16 @@ margin-top: 5px;
 font-size: 1.2rem;
 font-weight: 600;
   font-weight: 600;
+  color: var(--text-main);
 }
 
 .signed .name {
   font-family: var(--font-script);
   font-size: 2.8rem;
-  color: var(--primary);
+  color: var(--primary-dark);
   display: inline-block;
   margin-top: 5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .heart-icon {
@@ -440,8 +497,8 @@ font-weight: 600;
 }
 
 .btn-interact {
-  background: var(--glass);
-  backdrop-filter: blur(10px);
+  background: var(--glass-heavy);
+  backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
   padding: 12px 25px;
   border-radius: 30px;
@@ -449,14 +506,41 @@ font-weight: 600;
   font-weight: 600;
   color: var(--primary-dark);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 8px 25px var(--shadow-light),
+    0 0 0 1px var(--glass-border),
+    inset 0 0 0 1px var(--glass-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-interact::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+  z-index: -1;
 }
 
 .btn-interact:hover {
-  background: var(--primary);
-  color: #fff;
-  transform: translateY(-2px);
+  color: white;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 12px 35px var(--shadow-medium),
+    0 0 0 1px var(--glass-border),
+    inset 0 0 0 1px var(--glass-light);
+}
+
+.btn-interact:hover::before {
+  width: 100%;
+  height: 100%;
 }
 
 /* Enhanced User-Friendly Features */
@@ -656,6 +740,71 @@ font-weight: 600;
 
 .polaroid:hover::before {
   opacity: 0.3;
+}
+
+/* Enhanced Balloons with Modern Glass Effects */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -150px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow: 
+    inset -5px -5px 15px var(--shadow-light),
+    0 0 20px rgba(255, 255, 255, 0.3);
+  opacity: 0.8;
+  animation: float-up 15s infinite ease-in-out;
+  background: linear-gradient(135deg, var(--glass-light), var(--glass-heavy));
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+.particle::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 30%;
+  height: 30%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  filter: blur(3px);
+}
+
+.particle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--glass-border), transparent);
+  transform: translateX(-50%);
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(30px) rotate(180deg);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(-20px) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* Enhanced hint text */
