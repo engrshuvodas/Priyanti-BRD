@@ -69,11 +69,11 @@
     </main>
 
     <div class="music-controls">
-      <audio id="celebration-music" loop>
+      <audio id="celebration-music" loop autoplay>
         <source src="./bsong.mpeg" type="audio/mpeg">
       </audio>
       <button id="music-toggle" class="fab-music">
-        <span class="icon">🎵</span>
+        <span class="icon">🔊</span>
       </button>
     </div>
   </div>
@@ -216,21 +216,50 @@
         }, 3000);
       });
 
+      // Auto-play music on page load
+      function initMusic() {
+        // Try to autoplay music (may be blocked by browser)
+        audio.play().then(() => {
+          isPlaying = true;
+          updateMusicButton();
+        }).catch(() => {
+          // If autoplay is blocked, wait for user interaction
+          isPlaying = false;
+          updateMusicButton();
+        });
+      }
+
+      // Update music button appearance
+      function updateMusicButton() {
+        const icon = musicBtn.querySelector('.icon');
+        
+        if (isPlaying) {
+          icon.textContent = '🔊';
+          musicBtn.classList.add('playing');
+        } else {
+          icon.textContent = '🔇';
+          musicBtn.classList.remove('playing');
+        }
+      }
+
       // Music Toggle
       const musicBtn = document.getElementById('music-toggle');
       const audio = document.getElementById('celebration-music');
       let isPlaying = false;
 
       musicBtn.addEventListener('click', () => {
-        if (!isPlaying) {
-          audio.play();
-          musicBtn.classList.add('playing');
-        } else {
+        if (isPlaying) {
           audio.pause();
-          musicBtn.classList.remove('playing');
+          isPlaying = false;
+        } else {
+          audio.play().catch(() => {});
+          isPlaying = true;
         }
-        isPlaying = !isPlaying;
+        updateMusicButton();
       });
+
+      // Initialize music on page load
+      initMusic();
     });
   </script>
 </body>
