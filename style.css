@@ -1378,133 +1378,147 @@ font-weight: 600;
 /* Responsive Design for Mobile Phones */
 @media (max-width: 768px) {
   body {
-    padding: 5px;
+    padding: 0;
     align-items: flex-start;
     min-height: 100vh;
+    font-size: 14px;
   }
 
   .main-container {
     padding: 15px 10px;
+    width: 100%;
+    max-width: 100vw;
   }
 
   #card-wrapper {
-    height: 480px;
+    height: auto;
     max-width: 100%;
     perspective: none;
+    padding: 10px 0;
   }
 
   #card {
     width: 100%;
-    max-width: 340px;
-    height: 420px;
+    max-width: 350px;
+    height: 500px;
     transform-style: flat;
+    margin: 0 auto;
   }
 
   #card-front,
   #card-inside {
     width: 100%;
     left: 0;
-    border-radius: 12px;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   #card-inside {
     border-left: none;
-    border-radius: 12px;
-    background: #fffafa;
+    border-radius: 15px;
+    background: var(--glass-heavy);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
   }
 
   .front-content {
-    padding: 25px 20px;
+    padding: 30px 25px;
+    height: 100%;
   }
 
   .main-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 1.1;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   .main-title .highlight {
-    font-size: 2.3rem;
-    margin-top: 3px;
+    font-size: 2.8rem;
+    margin-top: 5px;
   }
 
   .inside-content {
-    padding: 20px 18px;
+    padding: 25px 20px;
     justify-content: flex-start;
-    padding-top: 30px;
+    padding-top: 35px;
+    height: 100%;
   }
 
   .wish-title {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
   }
 
   .wish-text {
-    font-size: 0.82rem;
-    line-height: 1.3;
-    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
   }
 
   .wish-text p {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .typing-line {
-    font-size: 0.82rem;
-    padding: 4px 0;
-    min-height: 1.4em;
+    font-size: 0.95rem;
+    padding: 6px 0;
+    min-height: 1.5em;
   }
 
   .signed {
-    font-size: 0.9rem;
-    margin-top: 10px;
+    font-size: 1rem;
+    margin-top: 15px;
     text-align: center;
   }
 
   .signed .name {
-    font-size: 1.8rem;
-    margin-top: 2px;
+    font-size: 2rem;
+    margin-top: 5px;
   }
 
   .card-controls {
-    bottom: 15px;
-    right: 15px;
+    bottom: 20px;
+    right: 20px;
     z-index: 100;
   }
 
   .btn-interact {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    border-radius: 20px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    border-radius: 25px;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .mini-surprise-btn {
-    margin-top: 12px;
-    padding: 6px 16px;
-    font-size: 0.8rem;
-    border-radius: 18px;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .navigation-hint {
-    margin-top: 25px;
-  }
-
-  .hint-text {
-    font-size: 0.75rem;
-    margin-bottom: 15px;
-  }
-
-  .next-page-btn {
+    margin-top: 15px;
+    padding: 8px 18px;
     font-size: 0.85rem;
-    padding: 6px 18px;
     border-radius: 20px;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    min-height: 40px;
+  }
+
+  .navigation-hint {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .hint-text {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .next-page-btn {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    border-radius: 25px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
   }
 
   /* Mobile slide animation instead of 3D flip */
@@ -1540,17 +1554,17 @@ font-weight: 600;
     opacity: 1;
   }
 
+  /* Optimize particles for mobile */
+  .particle {
+    width: 2px !important;
+    height: 2px !important;
+    opacity: 0.2 !important;
+  }
+
   /* Hide desktop effects on mobile */
   .cursor-light,
   .orb {
     display: none;
-  }
-
-  /* Optimize particles for mobile */
-  .particle {
-    width: 1px !important;
-    height: 1px !important;
-    opacity: 0.1 !important;
   }
 
   /* Better touch targets */
@@ -1572,15 +1586,26 @@ font-weight: 600;
 
   /* Loading screen mobile */
   .reveal-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   /* Fun surprise section mobile */
   .surprise-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .surprise-text {
+    font-size: 1rem;
+  }
+
+  /* Audio player mobile */
+  .audio-player {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .music-btn {
+    padding: 8px 15px;
     font-size: 0.9rem;
   }
 }

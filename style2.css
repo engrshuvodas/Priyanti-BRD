@@ -713,64 +713,322 @@ body::before {
   }
 }
 
-/* Responsive */
+/* Enhanced Responsive Design */
 @media (max-width: 900px) {
+  .celebration-container {
+    padding: 15px;
+  }
+
   .glass-card {
     flex-direction: column;
     max-width: 500px;
     margin: 20px 0;
+    border-radius: 25px;
   }
 
   .photo-section {
     min-height: 350px;
+    border-radius: 25px 25px 0 0;
   }
 
   .message-section {
     padding: 40px 30px;
+    border-radius: 0 0 25px 25px;
   }
 
   .celebrate-title {
     font-size: 2.2rem;
+    margin-bottom: 25px;
   }
 
   .celebrate-title span {
     font-size: 3.2rem;
   }
+
+  .gallery-dots {
+    bottom: 15px;
+  }
+
+  .gallery-nav {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .fab-music {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .celebration-container {
     padding: 10px;
+    min-height: 100vh;
   }
 
   .glass-card {
+    max-width: 100%;
+    margin: 10px 0;
     border-radius: 20px;
   }
 
   .photo-section {
     min-height: 300px;
+    border-radius: 20px 20px 0 0;
   }
 
   .message-section {
-    padding: 30px 20px;
+    padding: 30px 25px;
+    border-radius: 0 0 20px 20px;
   }
 
   .celebrate-title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
   }
 
   .celebrate-title span {
     font-size: 2.8rem;
   }
 
-  .message-content {
+  .reveal-p {
     font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .gallery-dots {
+    bottom: 12px;
+  }
+
+  .gallery-dots .dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .gallery-nav {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border-radius: 20px;
   }
 
   .fab-music {
     width: 50px;
     height: 50px;
     font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  /* Optimize balloons for mobile */
+  .balloon {
+    width: 30px !important;
+    height: 35px !important;
+  }
+
+  .balloon::after {
+    width: 2px !important;
+    height: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebration-container {
+    padding: 5px;
+  }
+
+  .glass-card {
+    border-radius: 15px;
+  }
+
+  .photo-section {
+    min-height: 250px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .message-section {
+    padding: 25px 20px;
+    border-radius: 0 0 15px 15px;
+  }
+
+  .celebrate-title {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .celebrate-title span {
+    font-size: 2.4rem;
+  }
+
+  .reveal-p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .gallery-dots {
+    bottom: 10px;
+  }
+
+  .gallery-dots .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .gallery-nav {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    border-radius: 15px;
+  }
+
+  .fab-music {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  /* Further optimize balloons for small screens */
+  .balloon {
+    width: 25px !important;
+    height: 30px !important;
+  }
+
+  .balloon::after {
+    width: 1.5px !important;
+    height: 50px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .celebration-container {
+    padding: 2px;
+  }
+
+  .glass-card {
+    border-radius: 12px;
+  }
+
+  .photo-section {
+    min-height: 200px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .message-section {
+    padding: 20px 15px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .celebrate-title {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .celebrate-title span {
+    font-size: 2rem;
+  }
+
+  .reveal-p {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .gallery-nav {
+    padding: 4px 6px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .fab-music {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .celebration-container {
+    padding: 5px;
+  }
+
+  .glass-card {
+    flex-direction: row;
+    max-width: 100%;
+    height: 70vh;
+  }
+
+  .photo-section {
+    min-height: auto;
+    height: 100%;
+    border-radius: 15px 0 0 15px;
+  }
+
+  .message-section {
+    padding: 20px 15px;
+    border-radius: 0 15px 15px 0;
+  }
+
+  .celebrate-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .celebrate-title span {
+    font-size: 2.2rem;
+  }
+
+  .reveal-p {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+}
+
+/* Touch optimizations for mobile */
+@media (max-width: 768px) {
+  /* Better touch targets */
+  button, .gallery-nav {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent zoom on input */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* Optimize animations for mobile */
+  .balloon {
+    animation-duration: 15s !important;
+  }
+
+  .particle {
+    animation-duration: 12s !important;
+  }
+
+  /* Reduce motion for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    .balloon,
+    .particle,
+    .fab-music {
+      animation: none !important;
+    }
   }
 }
 
