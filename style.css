@@ -144,12 +144,13 @@ body {
   padding: 8px 0;
   line-height: 1.6;
   font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  color: var(--text-light);
+  color: var(--text-bright);
   font-weight: 400;
   min-height: 1.6em;
   position: relative;
   opacity: 0;
   transform: translateY(10px);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* Typing cursor effect */
