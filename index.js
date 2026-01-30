@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Typing Animation Configuration
   const typingConfig = {
     lines: [
-      "Priyanti, you've been an amazing friend through thick and thin — life wouldn't be the same without you!",
-      "You deserve all the happiness and success in the world. Keep being awesome!"
+      "Priyanti, you are truly amazing and such a cute lady. When you say it in your voice, that Bangla and Hindi mix sounds really cute—just wow. It stays in my mind...!",
+      "You genuinely deserve all the happiness and success in the world..!"
     ],
     duration: 1.5, // Faster typing for better UX
     pauseBetweenLines: 0.2
