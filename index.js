@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const openBtn = document.getElementById('open');
   const closeBtn = document.getElementById('close');
   const loader = document.getElementById('loader');
-  const musicBtn = document.getElementById('music-toggle');
-  const audio = document.getElementById('bg-music');
   const cursorLight = document.querySelector('.cursor-light');
   const endingScene = document.getElementById('ending-scene');
   const replayBtn = document.getElementById('replay-btn');
@@ -18,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const cardFront = document.getElementById('card-front');
 
-  let isMusicPlaying = true; // Start with music playing
   let isCardOpen = false;
 
   const colors = ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffc8dd', '#fb6f92'];
@@ -538,86 +535,4 @@ document.addEventListener('DOMContentLoaded', () => {
       createSparkle(e.pageX, e.pageY);
     }
   });
-
-  // Music Toggle - Same as bbd.html
-  let isPlaying = false;
-  let musicInitialized = false;
-
-  // Auto-play music on page load
-  function initMusic() {
-    if (musicInitialized) return;
-    musicInitialized = true;
-    
-    // Try to autoplay music (may be blocked by browser)
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        isPlaying = true;
-        updateMusicButton();
-        console.log('Music auto-play started successfully');
-      }).catch((error) => {
-        // If autoplay is blocked, wait for user interaction
-        isPlaying = false;
-        updateMusicButton();
-        console.log('Auto-play blocked, waiting for user interaction');
-        
-        // Add one-time user interaction listener
-        const startMusicOnInteraction = () => {
-          if (!isPlaying) {
-            audio.play().then(() => {
-              isPlaying = true;
-              updateMusicButton();
-              console.log('Music started after user interaction');
-            }).catch((err) => {
-              console.error('Failed to play music after interaction:', err);
-            });
-          }
-          // Remove the listener after first interaction
-          document.removeEventListener('click', startMusicOnInteraction);
-          document.removeEventListener('keydown', startMusicOnInteraction);
-        };
-        
-        // Listen for first user interaction
-        document.addEventListener('click', startMusicOnInteraction, { once: true });
-        document.addEventListener('keydown', startMusicOnInteraction, { once: true });
-      });
-    }
-  }
-
-  // Update music button appearance
-  function updateMusicButton() {
-    const icon = musicBtn.querySelector('.icon');
-    
-    if (isPlaying) {
-      icon.textContent = '🔊';
-      musicBtn.classList.add('playing');
-    } else {
-      icon.textContent = '🔇';
-      musicBtn.classList.remove('playing');
-    }
-  }
-
-  musicBtn.addEventListener('click', () => {
-    if (!isPlaying) {
-      audio.play().then(() => {
-        isPlaying = true;
-        updateMusicButton();
-        console.log('Music started by button click');
-      }).catch((error) => {
-        console.error('Failed to play music:', error);
-      });
-    } else {
-      audio.pause();
-      isPlaying = false;
-      updateMusicButton();
-      console.log('Music paused by button click');
-    }
-  });
-
-  // Initialize music on page load with delay
-  setTimeout(() => {
-    initMusic();
-  }, 500);
 });
-

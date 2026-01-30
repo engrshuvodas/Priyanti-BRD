@@ -21,6 +21,7 @@
 
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="music.css">
 </head>
 
 <body>
@@ -126,13 +127,13 @@
 		</div>
 	</main>
 
-	<div class="audio-player">
+	<div class="music-controls">
+		<audio id="celebration-music" loop autoplay>
+			<source src="./bsong.mpeg" type="audio/mpeg">
+		</audio>
 		<button id="music-toggle" class="fab-music">
 			<span class="icon">🔊</span>
 		</button>
-		<audio id="bg-music" loop autoplay>
-			<source src="./b-home-song.mpeg" type="audio/mpeg">
-		</audio>
 	</div>
 
 	<!-- Final Cinematic Ending Overlay -->
@@ -161,6 +162,7 @@
 	</div>
 
 	<script src="index.js"></script>
+	<script src="music.js"></script>
 </body>
 
 </html>
