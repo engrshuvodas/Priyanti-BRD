@@ -29,16 +29,17 @@
     <main class="content-wrapper">
       <div class="glass-card">
         <div class="photo-section">
-          <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="position: relative; width: 100%; min-height: 400px; background: white; border-radius: 20px; overflow: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
-              <img id="current-photo" src="./BRD-Girl/prionty1.jpeg" alt="Priyanti" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block;">
-              <div style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%);">
+          <div style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="position: relative; width: 100%; height: 400px; background: transparent; border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+              <img id="current-photo" src="./BRD-Girl/prionty1.jpeg" alt="Priyanti" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <!-- Hidden controls for functionality -->
+              <div style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); display: none;">
                 <button onclick="changePhoto(-1)" style="width: 40px; height: 40px; border-radius: 50%; background: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">‹</button>
               </div>
-              <div style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%);">
+              <div style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); display: none;">
                 <button onclick="changePhoto(1)" style="width: 40px; height: 40px; border-radius: 50%; background: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">›</button>
               </div>
-              <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+              <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; display: none;">
                 <span onclick="showPhoto(0)" id="dot-0" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></span>
                 <span onclick="showPhoto(1)" id="dot-1" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></span>
                 <span onclick="showPhoto(2)" id="dot-2" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></span>
